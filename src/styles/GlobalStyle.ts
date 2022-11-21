@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components"
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export default createGlobalStyle`
   * {
@@ -16,4 +18,6 @@ export const colors = {
   thirdLight: "#F196AC",
   white: "#ffffff",
   black: "#000000",
+  success: "#50ba9e",
+  danger: "#660000"
 }
