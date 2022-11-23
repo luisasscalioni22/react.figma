@@ -6,15 +6,15 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { apiMessage, apiTopic } from "services/data";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
-import { IMessageForm } from "interfaces/message.interface";
+import { ILegendaForm } from "interfaces/legenda.interface";
 import { IErrorResponse } from "interfaces/user.interface";
-import { ITopicData } from "interfaces/topic.interface";
+import { ILegendaData } from "interfaces/legenda.interface";
 
 const MessageStore = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [topics, setTopics] = useState<ITopicData[]>()
+  const [topics, setTopics] = useState<ILegendaData[]>()
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<IMessageForm>({
+  const [formData, setFormData] = useState<ILegendaForm>({
     title: '',
     message: '',
     topic: []
@@ -31,7 +31,7 @@ const MessageStore = () => {
         await apiMessage.store(formData);
         toast.success("Mensagem cadastrada com sucesso!");
       }
-      navigate('/adm/message')
+      navigate('/adm/legenda')
     } catch (error) {
       const err = error as AxiosError<IErrorResponse>
       let messages = err.response?.data.message
@@ -43,8 +43,8 @@ const MessageStore = () => {
     }
   }
 
-  async function handleChange(e: IMessageForm) {
-    setFormData((state: IMessageForm) => ({ ...state, ...e }))
+  async function handleChange(e: ILegendaForm) {
+    setFormData((state: ILegendaForm) => ({ ...state, ...e }))
   }
 
   async function handleCheck(e: string) {
@@ -54,7 +54,7 @@ const MessageStore = () => {
     } else {
       topic.push(Number(e))
     }
-    setFormData((state: IMessageForm) => ({ ...state, topic }))
+    setFormData((state: ILegendaForm) => ({ ...state, topic }))
   }
 
   useEffect(() => {

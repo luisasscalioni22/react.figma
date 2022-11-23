@@ -1,2 +1,2 @@
-export { default as AdmMessagePage } from "./Message"
-export { default as AdmMessageStorePage } from "./Message/store"
+export { default as AdmLegendaPage } from "./Legenda"
+export { default as AdmLegendaStorePage } from "./Legenda/store"

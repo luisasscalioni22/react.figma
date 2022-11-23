@@ -1,5 +1,5 @@
 import { useLottie } from "lottie-react";
-import loading from 'lottie/loading.json'
+import loading from 'lottie/loading.json';
 export default function Loading() {
 
   const options = {

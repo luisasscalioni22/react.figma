@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { ButtonComponent } from "components";
 import * as S from "./styles";
-import { apiMessage } from "services/data";
-import { IMessageData } from "interfaces/message.interface";
+import { apiLegenda } from "services/data";
+import { ILegendaData } from "interfaces/legenda.interface";
 import { LoadingComponent } from "components";
 import { FcAddDatabase } from "react-icons/fc";
 import { BsPencilSquare, BsTrash2 } from "react-icons/bs";
@@ -11,12 +11,12 @@ import { confirmAlert } from "react-confirm-alert";
 import { toast } from "react-toastify";
 
 const AdmMessage = () => {
-  const [messages, setMessages] = useState<IMessageData[]>();
+  const [messages, setMessages] = useState<ILegendaData[]>();
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const fetchData = useCallback(async () => {
-    const response = await apiMessage.index();
+    const response = await apiLegenda.index();
     setMessages(response.data);
     setIsLoading(false);
   }, []);
@@ -35,7 +35,7 @@ const AdmMessage = () => {
             label: "SIM",
             onClick: async () => {
               setIsLoading(true);
-              await apiMessage.destroy(id);
+              await apiLegenda.destroy(id);
               toast.success("Mensagem removida com sucesso!");
               fetchData();
             },

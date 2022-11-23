@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
 
-export interface IMessageData {
+export interface ILegendaData {
+    name: ReactNode;
     id?: number
     title?: string
     message?: string
@@ -13,7 +15,7 @@ export interface IMessageData {
     }[]
   }
   
-  export interface IMessageForm {
+  export interface ILegendaForm {
     id?: number
     title?: string
     message?: string
