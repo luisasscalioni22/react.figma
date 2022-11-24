@@ -3,16 +3,16 @@ import * as S from "./styles";
 import { LoadingComponent, ButtonComponent } from "components";
 import { FcDatabase, FcUndo } from "react-icons/fc";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { apiMessage, apiTopic } from "services/data";
+import { apiLegenda, apiTopic } from "services/data";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { ILegendaForm } from "interfaces/legenda.interface";
 import { IErrorResponse } from "interfaces/user.interface";
-import { ILegendaData } from "interfaces/legenda.interface";
+import { ITopicData } from "interfaces/topic.interface";
 
 const MessageStore = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [topics, setTopics] = useState<ILegendaData[]>()
+  const [topics, setTopics] = useState<ITopicData[]>()
   const navigate = useNavigate();
   const [formData, setFormData] = useState<ILegendaForm>({
     title: '',
@@ -25,13 +25,13 @@ const MessageStore = () => {
     event.preventDefault()
     try {
       if (Number(id) > 0) {
-        await apiMessage.update(Number(id), formData);
+        await apiLegenda.update(Number(id), formData);
         toast.success("Mensagem alterada com sucesso!");
       } else {
-        await apiMessage.store(formData);
+        await apiLegenda.store(formData);
         toast.success("Mensagem cadastrada com sucesso!");
       }
-      navigate('/adm/legenda')
+      navigate('/adm/message')
     } catch (error) {
       const err = error as AxiosError<IErrorResponse>
       let messages = err.response?.data.message
@@ -48,7 +48,7 @@ const MessageStore = () => {
   }
 
   async function handleCheck(e: string) {
-    let topic: number[] = []
+    let topic = formData.topic ? formData.topic : []
     if (formData.topic?.includes(Number(e))) {
       topic = formData.topic.filter((i) => i !== Number(e))
     } else {
@@ -69,7 +69,7 @@ const MessageStore = () => {
     if (Number(id) > 0) {
       const fetchData = async (id: number) => {
         try {
-          const response = await apiMessage.show(id);
+          const response = await apiLegenda.show(id);
           setFormData({
             ...response.data,
             topic: response.data.messageTopic?.map((i) => i.id)

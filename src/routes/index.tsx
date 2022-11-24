@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import {
+  AdmLegendaPage,
+  AdmLegendaStorePage,
   CadastrarPage,
   HomePage,
   LayoutPage,
@@ -13,6 +15,8 @@ const Rotas = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/cadastrar" element={<CadastrarPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/legenda" element={<AdmLegendaPage />} />
+        <Route path="/legenda/:id" element={<AdmLegendaStorePage />} />
         <Route path="/adm" element={<ProtectedRoute />}>
         </Route>
       </Route>
