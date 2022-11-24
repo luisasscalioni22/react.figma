@@ -16,7 +16,7 @@ const Card = ({ dados }: ICard) => {
           <h3> {dados.titulo}</h3>
           <h3> {dados.mensagem}</h3>
           <div>
-            {dados.topico.map((topic) => (
+            {dados.topico.((topic: { id: React.Key | null | undefined; item: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) => (
               <span key={topic.id}>{topic.item}</span>
             ))}
           </div>
